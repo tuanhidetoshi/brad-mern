@@ -1,10 +1,20 @@
 const express = require('express');
+const db = require('./database');
+const routes = require('./routes')
+
 const app = express();
 
-app.use('/', (req, res) => {
-    res.send({test: 'test'})
-})
+require('dotenv').config();
 
-const _PORT = 5000;
+db.connect();
+app.use(express.json({ extended: false }))
 
-app.listen(_PORT, () => console.log(`Server is running at port ${_PORT}`))
+// app.use('/', (req, res) => {
+//     res.send({test: 'test'});
+// })
+
+app.use('/api', routes)
+
+const _PORT = process.env.PORT || 5000;
+
+app.listen(_PORT, () => console.log(`Server is running at port ${_PORT}`));
