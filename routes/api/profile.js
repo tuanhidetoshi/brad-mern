@@ -7,7 +7,6 @@ const profile = require('../../middlewares/validation/Profile');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-const { response } = require('express');
 
 // @route    Get api/profile/me
 // @desc     Get current users profile
