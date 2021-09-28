@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-// @route    Get api/posts
-// @desc     Test route
-// @access   Public
-router.get('/', (req, res) => {
+const validation = require('../../middlewares/validation');
+const post = require('../../middlewares/validation/Post');
+
+// @route    Post api/posts
+// @desc     Create a post
+// @access   Private
+router.get('/', [validation(post.createPostSchema)], (req, res) => {
     res.send('Post router')
 })
 
