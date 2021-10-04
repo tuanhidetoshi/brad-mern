@@ -1,19 +1,19 @@
 const Joi = require('joi');
 
 const createOrUpdateSchema = Joi.object({
-    company: Joi.string().trim(),
-    website: Joi.string().trim(),
-    location: Joi.string().trim(),
+    company: Joi.string().trim().allow(null, ''),
+    website: Joi.string().trim().allow(null, ''),
+    location: Joi.string().trim().allow(null, ''),
     status: Joi.string().required().messages({"any.required": "Status is required"}),
     skills: Joi.array().items(Joi.string()).required().min(1).messages({"any.required": "Skills is required"}),
-    bio: Joi.string().trim(),
-    githubusername: Joi.string().trim(),
+    bio: Joi.string().trim().allow(null, ''),
+    githubusername: Joi.string().trim().allow(null, ''),
     social: Joi.object().keys({
-        youtube: Joi.string().trim(),
-        twitter: Joi.string().trim(),
-        facebook: Joi.string().trim(),
-        linkedin: Joi.string().trim(),
-        instagram: Joi.string().trim(),
+        youtube: Joi.string().trim().allow(null, ''),
+        twitter: Joi.string().trim().allow(null, ''),
+        facebook: Joi.string().trim().allow(null, ''),
+        linkedin: Joi.string().trim().allow(null, ''),
+        instagram: Joi.string().trim().allow(null, ''),
     })
 })
 
@@ -24,13 +24,13 @@ const experienceSchema = Joi.object({
     company: Joi.string().required().messages({
         'any.required': 'Company is required'
     }),
-    location: Joi.string(),
+    location: Joi.string().allow(null, ''),
     from: Joi.date().required().messages({
         'any.required': 'From date is required'
     }),
     to: Joi.date(),
     current: Joi.boolean(),
-    description: Joi.string()
+    description: Joi.string().allow(null, '')
 })
 
 const educationSchema = Joi.object({
