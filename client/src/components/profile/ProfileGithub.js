@@ -9,7 +9,7 @@ const ProfileGithub = ({ username }) => {
 
     React.useEffect(() => {
         dispatch(getGithubRepos(username));
-    }, [dispatch])
+    }, [dispatch, username])
 
     return (
         <div className='profile-github'>

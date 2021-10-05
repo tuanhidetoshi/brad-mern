@@ -35,7 +35,7 @@ const Profile = ({ match }) => {
                         <ProfileAbout profile={profile} />
 
                         <div className="profile-exp bg-white p-2">
-                            <h2 class="text-primary">Experience</h2>
+                            <h2 className="text-primary">Experience</h2>
                             {profile.experience.length > 0 ? 
                             (<>
                                 {profile.experience.map(exp => (
@@ -48,7 +48,7 @@ const Profile = ({ match }) => {
                         </div>
 
                         <div className="profile-edu bg-white p-2">
-                            <h2 class="text-primary">Education</h2>
+                            <h2 className="text-primary">Education</h2>
                             {profile.education.length > 0 ? 
                             (<>
                                 {profile.education.map(edu => (
