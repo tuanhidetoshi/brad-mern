@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { addEducation } from '../../actions/profile';
 
 const AddEducation = () => {
@@ -32,7 +33,10 @@ const AddEducation = () => {
                 you have attended
             </p>
             <small>* = required field</small>
-            <form class="form">
+            <form onSubmit={e => {
+                e.preventDefault();
+                dispatch(addEducation(formData, history))
+            }} class="form">
                 <div class="form-group">
                     <input
                         type="text"
@@ -54,20 +58,37 @@ const AddEducation = () => {
                     />
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Field Of Study" name="fieldofstudy" />
+                    <input 
+                        type="text" 
+                        placeholder="Field Of Study" 
+                        name="fieldofstudy"
+                        value={fieldofstudy}
+                        onChange={e => onChange(e)} />
                 </div>
                 <div class="form-group">
                     <h4>From Date</h4>
-                    <input type="date" name="from" />
+                    <input 
+                        type="date" 
+                        name="from"
+                        value={from}
+                        onChange={e => onChange(e)} />
                 </div>
                 <div class="form-group">
                     <p>
-                        <input type="checkbox" name="current" value="" /> Current School or Bootcamp
+                        <input 
+                            type="checkbox" 
+                            name="current" 
+                            value={current}
+                            checked={current}
+                            onChange={e => {
+                                setFormData({ ...formData, current: !current });
+                                toggleDisabled(!toDateDisabled);
+                            }} /> Current School or Bootcamp
                     </p>
                 </div>
                 <div class="form-group">
                     <h4>To Date</h4>
-                    <input type="date" name="to" />
+                    <input type="date" name="to" value={to} onChange={e => onChange(e)} disabled={toDateDisabled ? 'disabled' : ''} />
                 </div>
                 <div class="form-group">
                     <textarea
@@ -75,10 +96,12 @@ const AddEducation = () => {
                         cols="30"
                         rows="5"
                         placeholder="Program Description"
+                        value={description}
+                        onChange={e => onChange(e)}
                     ></textarea>
                 </div>
                 <input type="submit" class="btn btn-primary my-1" />
-                <a class="btn btn-light my-1" href="dashboard.html">Go Back</a>
+                <Link class="btn btn-light my-1" to="/dashboard">Go Back</Link>
             </form>
         </>
     )

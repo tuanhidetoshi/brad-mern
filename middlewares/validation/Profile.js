@@ -28,7 +28,7 @@ const experienceSchema = Joi.object({
     from: Joi.date().required().messages({
         'any.required': 'From date is required'
     }),
-    to: Joi.date(),
+    to: Joi.date().allow(null, ''),
     current: Joi.boolean(),
     description: Joi.string().allow(null, '')
 })
@@ -38,9 +38,9 @@ const educationSchema = Joi.object({
     degree: Joi.string().required().messages({ 'any.required': 'Degree is required' }),
     fieldofstudy: Joi.string().required().messages({ 'any.required': 'Field of study is required' }),
     from: Joi.date().required().messages({ 'any.required': 'From date is required' }),
-    to: Joi.date(),
+    to: Joi.date().allow(null, ''),
     current: Joi.boolean(),
-    description: Joi.string()
+    description: Joi.string().allow(null, '')
 })
 
 module.exports = {
